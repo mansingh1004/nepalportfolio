@@ -1,3 +1,4 @@
+
 // import { useState, useEffect, useRef } from "react";
 
 // // ============================================================
@@ -203,6 +204,21 @@
 // .chat-btn { position:fixed; bottom:150px; right:24px; width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--cyan)); display:flex; align-items:center; justify-content:center; font-size:1.5rem; cursor:pointer; z-index:500; box-shadow:0 4px 20px rgba(0,198,255,.4); transition:all .3s; }
 // .chat-btn:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(0,198,255,.6); }
 
+// /* Chat Window */
+// .chat-window { position:fixed; bottom:220px; right:24px; width:320px; height:400px; background:var(--navy); border:1px solid var(--border); border-radius:12px; display:flex; flex-direction:column; z-index:1000; box-shadow:0 10px 40px rgba(0,0,0,0.6); overflow:hidden; animation: chat-pop 0.3s ease; }
+// @keyframes chat-pop { from { opacity:0; transform:translateY(20px) scale(0.9); } to { opacity:1; transform:none; } }
+// .chat-header { background:linear-gradient(135deg,var(--blue),var(--cyan)); padding:14px 16px; color:#fff; font-family:'DM Sans', sans-serif; font-weight:600; display:flex; justify-content:space-between; align-items:center; }
+// .chat-close { background:none; border:none; color:#fff; cursor:pointer; font-size:1.4rem; line-height:1; }
+// .chat-body { flex:1; padding:16px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; background:var(--navy2); }
+// .chat-msg { padding:10px 14px; border-radius:10px; max-width:85%; font-size:0.9rem; line-height:1.4; word-wrap: break-word; }
+// .chat-msg.user { background:var(--cyan); color:#000; align-self:flex-end; border-bottom-right-radius:2px; }
+// .chat-msg.bot { background:var(--glass); color:var(--white); border:1px solid var(--border); align-self:flex-start; border-bottom-left-radius:2px; }
+// .chat-footer { padding:12px; background:var(--navy); border-top:1px solid var(--border); display:flex; gap:8px; }
+// .chat-input { flex:1; padding:10px 12px; border-radius:6px; border:1px solid rgba(0,198,255,0.2); background:rgba(255,255,255,0.03); color:var(--white); outline:none; font-family:'DM Sans'; font-size:0.9rem; transition:border 0.3s; }
+// .chat-input:focus { border-color:var(--cyan); }
+// .chat-send { background:linear-gradient(135deg,var(--blue),var(--cyan)); color:#fff; border:none; padding:0 16px; border-radius:6px; cursor:pointer; font-weight:600; transition:all 0.3s; }
+// .chat-send:hover { box-shadow:0 0 10px rgba(0,198,255,0.4); }
+
 // .back-top { position:fixed; bottom:18px; right:24px; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--cyan)); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:500; transition:all .3s; opacity:0; pointer-events:none; font-size:1.1rem; }
 // .back-top.show { opacity:1; pointer-events:all; }
 // .back-top:hover { transform:translateY(-3px); box-shadow:var(--glow); }
@@ -241,6 +257,9 @@
 //   .responsive-2col { grid-template-columns: 1fr!important; gap: 40px; }
 //   .contact-grid { grid-template-columns: 1fr; margin-bottom: 0; }
 //   .footer-grid { grid-template-columns: 1fr!important; }
+
+//   /* Mobile Chat Adjustments */
+//   .chat-window { bottom:150px; right:15px; left:15px; width:auto; z-index:1000; }
 // }
 // @media (min-width:769px) {
 //   .mobile-ham { display:none !important; }
@@ -309,6 +328,47 @@
 //   { label: "Rara Lake", color: "#0d2a3e", h: 220 },
 // ];
 
+
+
+
+
+// const nepalBotKnowledge = [
+//   // Core Packages & Pricing
+//   { keywords: ["nepal tour package", "packages", "options"], reply: "We offer a variety of Nepal Tour Packages starting from ₹14,999! This includes Everest treks, honeymoon specials, and cultural tours. Would you like me to share a specific itinerary?" },
+//   { keywords: ["price", "cost", "how much", "budget", "fees"], reply: "Our packages range from ₹14,999 to ₹54,999 depending on the duration, hotel category, and transport type. Check our 'Packages' tab for detailed pricing." },
+//   { keywords: ["cheap", "budget friendly", "discount"], reply: "We have fantastic budget packages starting at just ₹14,999 for 3N/4D, including accommodation and sightseeing." },
+  
+//   // Destinations
+//   { keywords: ["kathmandu", "ktm"], reply: "Kathmandu is the heart of Nepal! Our Kathmandu tours cover Pashupatinath, Boudhanath Stupa, Swayambhunath (Monkey Temple), and Durbar Square." },
+//   { keywords: ["pokhara"], reply: "Pokhara is the city of lakes! It features Phewa Lake boating, Davis Falls, Gupteshwor Cave, and stunning sunrise views from Sarangkot." },
+//   { keywords: ["chitwan", "safari", "jungle"], reply: "Our Chitwan National Park packages include elephant/jeep safaris, canoe rides, jungle walks, and the Tharu cultural dance. Great for wildlife lovers!" },
+//   { keywords: ["lumbini", "buddha"], reply: "Lumbini is the birthplace of Lord Buddha. We offer peaceful pilgrimage packages to visit the Maya Devi Temple and international monasteries." },
+//   { keywords: ["muktinath", "pilgrimage", "darshan"], reply: "We offer dedicated Muktinath Darshan packages via flight (Jomsom) or road. Let us know if you need helicopter packages!" },
+  
+//   // Activities
+//   { keywords: ["trekking", "trek", "hiking"], reply: "Nepal is a trekker's paradise! We organize Everest Base Camp, Annapurna Circuit, and short hikes like Nagarkot or Dhampus." },
+//   { keywords: ["everest", "ebc", "mount everest"], reply: "You can experience Mount Everest via our 14-day EBC trek, or take a 1-hour scenic mountain flight from Kathmandu!" },
+//   { keywords: ["paragliding", "adventure", "bungee", "rafting"], reply: "Pokhara is the adventure capital! We can add Paragliding, Bungee Jumping, Zip-lining, or River Rafting to any package." },
+//   { keywords: ["honeymoon", "couple", "romantic"], reply: "Our Nepal Honeymoon packages include luxury stays, candlelit dinners in Pokhara, and private cabs. Shall I send you the brochure?" },
+  
+//   // Logistics & Travel
+//   { keywords: ["visa", "passport"], reply: "Indian citizens do NOT need a visa for Nepal! Just carry a valid Indian Passport or Voter ID card. Aadhar cards are not accepted for flight travel." },
+//   { keywords: ["flight", "airport", "air ticket"], reply: "Most of our packages start from Tribhuvan International Airport (KTM). We can assist with booking your flights from India as well." },
+//   { keywords: ["train", "gorakhpur", "raxaul"], reply: "We offer customized packages starting right from Gorakhpur or Raxaul borders with private cab pickups!" },
+//   { keywords: ["weather", "best time", "season", "climate"], reply: "The best time to visit Nepal is Spring (March-May) or Autumn (September-November) for clear skies and pleasant weather." },
+//   { keywords: ["snow", "snowfall"], reply: "If you want to see snow, we recommend visiting Kalinchowk or Chandragiri Hills during January and February." },
+  
+//   // Customization & Support
+//   { keywords: ["customize", "custom", "own plan"], reply: "Absolutely! All our tour packages are 100% customizable. Tell us your travel dates and preferred places, and we'll tailor it." },
+//   { keywords: ["family", "kids", "children"], reply: "Nepal is very family-friendly. We provide comfortable SUVs and select child-friendly hotels for family groups." },
+//   { keywords: ["group", "college", "corporate"], reply: "We specialize in group tours! If you have a group of 10+ people, we provide special discounts and large coach transport." },
+  
+//   // Policies & Contact
+//   { keywords: ["book", "booking", "reserve"], reply: "To book, you just need to pay a 25% advance. The rest can be paid upon arrival in Nepal. Shall I share the payment link?" },
+//   { keywords: ["cancel", "refund"], reply: "We offer a flexible cancellation policy. Cancellations made 15 days prior get a full refund minus minimal processing fees." },
+//   { keywords: ["contact", "number", "call", "whatsapp", "phone"], reply: "You can reach our Nepal Tour experts directly at [Your Phone Number] or email us at [Your Email]." },
+//   { keywords: ["hello", "hi", "hey"], reply: "Namaste! Welcome to Nepal Tour and Travel. How can I help you plan your Himalayan trip today?" }
+// ];
 // // ============================================================
 // // COMPONENTS
 // // ============================================================
@@ -1069,7 +1129,14 @@
 //   const [loaded, setLoaded] = useState(false);
 //   const [progress, setProgress] = useState(0);
 //   const [showTop, setShowTop] = useState(false);
+  
+//   // Chatbot State
+//   const [isChatOpen, setIsChatOpen] = useState(false);
+//   const [chatMessages, setChatMessages] = useState([{ sender: 'bot', text: 'Namaste! How can I help you plan your Nepal trip today?' }]);
+//   const [chatInput, setChatInput] = useState('');
+  
 //   const cursorRef = useRef(null);
+//   const chatEndRef = useRef(null);
 
 //   useEffect(() => {
 //     setTimeout(() => setLoaded(true), 1800);
@@ -1107,6 +1174,44 @@
 //       window.removeEventListener("mousemove", onMove);
 //     };
 //   }, []);
+
+//   // Auto-scroll chat
+//   useEffect(() => {
+//     if (chatEndRef.current) {
+//       chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+//     }
+//   }, [chatMessages]);
+
+//  const handleSendMessage = (e) => {
+//   e.preventDefault();
+//   if (!chatInput.trim()) return;
+  
+//   // 1. Add user message
+//   const userMsg = chatInput.trim();
+//   setChatMessages(prev => [...prev, { sender: 'user', text: userMsg }]);
+//   setChatInput('');
+
+//   // 2. Logic for auto-reply
+//   setTimeout(() => {
+//     // Default fallback message if no keywords match
+//     let botReply = "Thank you for reaching out! Our travel experts are reviewing your message and will connect with you shortly.";
+    
+//     // Convert user message to lowercase for case-insensitive matching
+//     const lowerMsg = userMsg.toLowerCase();
+
+//     // Search the knowledge base for a match
+//     const match = nepalBotKnowledge.find(entry => 
+//       entry.keywords.some(keyword => lowerMsg.includes(keyword))
+//     );
+
+//     // If a match is found, replace the default reply
+//     if (match) {
+//       botReply = match.reply;
+//     }
+
+//     setChatMessages(prev => [...prev, { sender: 'bot', text: botReply }]);
+//   }, 1000); // 1 second delay to simulate typing
+// };
 
 //   return (
 //     <>
@@ -1151,8 +1256,30 @@
 
 //       <Footer />
 
+//       {/* Chatbot Window */}
+//       {isChatOpen && (
+//         <div className="chat-window">
+//           <div className="chat-header">
+//             <span>Nepal Tour Guide 🤖</span>
+//             <button className="chat-close" onClick={() => setIsChatOpen(false)}>✕</button>
+//           </div>
+//           <div className="chat-body">
+//             {chatMessages.map((m, i) => (
+//               <div key={i} className={`chat-msg ${m.sender}`}>
+//                 {m.text}
+//               </div>
+//             ))}
+//             <div ref={chatEndRef} />
+//           </div>
+//           <form className="chat-footer" onSubmit={handleSendMessage}>
+//             <input type="text" className="chat-input" placeholder="Type a message..." value={chatInput} onChange={e => setChatInput(e.target.value)} />
+//             <button type="submit" className="chat-send">Send</button>
+//           </form>
+//         </div>
+//       )}
+
 //       {/* Chatbot float */}
-//       <div className="chat-btn" title="Open Chatbot" onClick={() => alert("Chatbot coming soon!")}>🤖</div>
+//       <div className="chat-btn" title="Open Chatbot" onClick={() => setIsChatOpen(!isChatOpen)}>🤖</div>
 
 //       {/* WhatsApp float */}
 //       <a href="https://wa.me/919918001088" target="_blank" rel="noreferrer">
@@ -1164,7 +1291,6 @@
 //     </>
 //   );
 // }
-
 
 
 
@@ -1299,6 +1425,13 @@ nav.scrolled { background:rgba(4,13,26,.92); backdrop-filter:blur(20px); border-
 .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:linear-gradient(90deg,var(--cyan),var(--gold)); transition:width .3s; border-radius:2px; }
 .nav-link:hover, .nav-link.active { color:var(--white); }
 .nav-link:hover::after, .nav-link.active::after { width:100%; }
+
+/* Custom Modal */
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.8); backdrop-filter:blur(5px); z-index:2000; display:flex; align-items:center; justify-content:center; padding:20px; animation:fadeIn 0.3s; }
+.modal-content { background:var(--navy2); border:1px solid var(--border); border-radius:16px; padding:32px; width:100%; max-width:500px; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.5); }
+.modal-close { position:absolute; top:16px; right:16px; background:transparent; border:none; color:var(--muted); font-size:1.5rem; cursor:pointer; transition:color 0.3s; }
+.modal-close:hover { color:var(--white); }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
 /* Hero */
 .hero-bg { background:linear-gradient(135deg, #040d1a 0%, #071428 30%, #091828 60%, #040d1a 100%); position:relative; overflow:hidden; }
@@ -1439,7 +1572,7 @@ textarea.form-input { resize:vertical; min-height:120px; }
 `;
 
 // ============================================================
-// DATA (Truncated standard data structure as original)
+// DATA 
 // ============================================================
 const navLinks = ["Home","About","Services","Packages","Gallery","Testimonials","Contact"];
 
@@ -1500,10 +1633,6 @@ const galleryItems = [
   { label: "Rara Lake", color: "#0d2a3e", h: 220 },
 ];
 
-
-
-
-
 const nepalBotKnowledge = [
   // Core Packages & Pricing
   { keywords: ["nepal tour package", "packages", "options"], reply: "We offer a variety of Nepal Tour Packages starting from ₹14,999! This includes Everest treks, honeymoon specials, and cultural tours. Would you like me to share a specific itinerary?" },
@@ -1538,9 +1667,10 @@ const nepalBotKnowledge = [
   // Policies & Contact
   { keywords: ["book", "booking", "reserve"], reply: "To book, you just need to pay a 25% advance. The rest can be paid upon arrival in Nepal. Shall I share the payment link?" },
   { keywords: ["cancel", "refund"], reply: "We offer a flexible cancellation policy. Cancellations made 15 days prior get a full refund minus minimal processing fees." },
-  { keywords: ["contact", "number", "call", "whatsapp", "phone"], reply: "You can reach our Nepal Tour experts directly at [Your Phone Number] or email us at [Your Email]." },
+  { keywords: ["contact", "number", "call", "whatsapp", "phone"], reply: "You can reach our Nepal Tour experts directly at +91-9422799108 or email us at info@nepaltoursandtravels.com." },
   { keywords: ["hello", "hi", "hey"], reply: "Namaste! Welcome to Nepal Tour and Travel. How can I help you plan your Himalayan trip today?" }
 ];
+
 // ============================================================
 // COMPONENTS
 // ============================================================
@@ -1576,11 +1706,100 @@ function RevealSection({ children, className = "", type = "reveal", threshold = 
 }
 
 // ============================================================
+// CUSTOMIZE MODAL COMPONENT (Budget Calculator)
+// ============================================================
+function CustomizeModal({ isOpen, onClose }) {
+  const [formData, setFormData] = useState({ location: "", nights: "", adults: "2", children: "0", rooms: "1" });
+  const [estimatedCost, setEstimatedCost] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCalculate = (e) => {
+    e.preventDefault();
+    const n = parseInt(formData.nights) || 1;
+    const a = parseInt(formData.adults) || 1;
+    const c = parseInt(formData.children) || 0;
+    const r = parseInt(formData.rooms) || 1;
+
+    // Budget Calculation Logic (Estimated)
+    const adultCost = a * 3000; // ₹3000 per adult per night
+    const childCost = c * 1500; // ₹1500 per child per night
+    const roomCost = r * 2000;  // ₹2000 per room per night
+    
+    const total = (adultCost + childCost + roomCost) * n;
+    setEstimatedCost(total);
+  };
+
+  const handleReset = () => {
+    setEstimatedCost(null);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        <button className="modal-close" onClick={() => { onClose(); handleReset(); }}>✕</button>
+        <h3 style={{ fontFamily: "Cinzel, serif", fontSize: "1.4rem", marginBottom: 24, color: "var(--cyan)", textAlign: "center" }}>Customize Your Package</h3>
+        
+        {estimatedCost !== null ? (
+           <div style={{ textAlign: "center" }}>
+             <p style={{ color: "var(--muted)", marginBottom: "10px" }}>Estimated Budget for {formData.nights} Nights in {formData.location || "Nepal"}</p>
+             <h2 style={{ fontFamily: "Cinzel, serif", fontSize: "2.5rem", color: "var(--gold)", marginBottom: "20px" }}>₹{estimatedCost.toLocaleString()}</h2>
+             <p style={{ fontSize: "0.85rem", color: "var(--muted)", marginBottom: "24px" }}>({formData.adults} Adults, {formData.children} Children, {formData.rooms} Rooms)</p>
+             
+             <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+               <button className="btn-glow btn-outline" style={{ padding: "10px 20px" }} onClick={handleReset}>Recalculate</button>
+               <button className="btn-glow btn-gold" style={{ padding: "10px 20px" }} onClick={() => { onClose(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}>Book Now</button>
+             </div>
+           </div>
+        ) : (
+          <form onSubmit={handleCalculate} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <div>
+              <label style={{ fontSize: ".8rem", color: "var(--muted)", marginBottom: 6, display: "block" }}>Location *</label>
+              <input type="text" name="location" value={formData.location} onChange={handleChange} required className="form-input" placeholder="e.g. Kathmandu, Pokhara" />
+            </div>
+            
+            <div>
+              <label style={{ fontSize: ".8rem", color: "var(--muted)", marginBottom: 6, display: "block" }}>Number of Nights *</label>
+              <input type="number" name="nights" value={formData.nights} onChange={handleChange} required min="1" className="form-input" placeholder="e.g. 4" />
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+              <div>
+                <label style={{ fontSize: ".8rem", color: "var(--muted)", marginBottom: 6, display: "block" }}>Adults</label>
+                <input type="number" name="adults" value={formData.adults} onChange={handleChange} min="1" className="form-input" />
+              </div>
+              <div>
+                <label style={{ fontSize: ".8rem", color: "var(--muted)", marginBottom: 6, display: "block" }}>Children</label>
+                <input type="number" name="children" value={formData.children} onChange={handleChange} min="0" className="form-input" />
+              </div>
+            </div>
+
+            <div>
+              <label style={{ fontSize: ".8rem", color: "var(--muted)", marginBottom: 6, display: "block" }}>Rooms Required</label>
+              <input type="number" name="rooms" value={formData.rooms} onChange={handleChange} min="1" className="form-input" />
+            </div>
+
+            <button type="submit" className="btn-glow btn-gold" style={{ marginTop: "10px", width: "100%", padding: "14px" }}>
+              Calculate Budget
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
 // NAVBAR
 // ============================================================
 function Navbar({ active, setActive }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false); // Modal state
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -1610,11 +1829,15 @@ function Navbar({ active, setActive }) {
             ))}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <button className="btn-glow btn-outline desktop-nav" style={{ padding: "10px 24px", fontSize: ".85rem", width: 'auto' }} onClick={() => setModalOpen(true)}>Customize Package</button>
             <button className="btn-glow btn-gold desktop-nav" style={{ padding: "10px 24px", fontSize: ".85rem", width: 'auto' }} onClick={() => scrollTo("Contact")}>Book Now</button>
             <button className="mobile-ham" onClick={() => setMenuOpen(true)} style={{ background: "none", border: "none", color: "var(--white)", fontSize: "1.5rem", cursor: "pointer" }}>☰</button>
           </div>
         </div>
       </nav>
+
+      {/* Customize Modal */}
+      <CustomizeModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
 
       {menuOpen && (
         <div className="mobile-menu">
@@ -1623,6 +1846,7 @@ function Navbar({ active, setActive }) {
           {navLinks.map(l => (
             <span key={l} style={{ fontSize: "1.3rem", fontFamily: "Cinzel, serif", color: "var(--white)", cursor: "pointer" }} onClick={() => scrollTo(l)}>{l}</span>
           ))}
+          <button className="btn-glow btn-outline" style={{width: '200px'}} onClick={() => { setModalOpen(true); setMenuOpen(false); }}>Customize Package</button>
           <button className="btn-glow btn-gold" style={{width: '200px'}} onClick={() => { scrollTo("Contact"); setMenuOpen(false); }}>Book Now</button>
         </div>
       )}
@@ -1894,13 +2118,6 @@ function Packages() {
           {filtered.map(p => <PackageCard key={p.title} pkg={p} />)}
         </div>
 
-        <RevealSection>
-          <div style={{ textAlign: "center", marginTop: 48 }}>
-            <button className="btn-glow btn-outline" style={{width: 'auto'}} onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
-              ✨ &nbsp;Request Custom Package
-            </button>
-          </div>
-        </RevealSection>
       </div>
     </section>
   );
