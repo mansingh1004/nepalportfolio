@@ -1724,8 +1724,8 @@ function CustomizeModal({ isOpen, onClose }) {
     const r = parseInt(formData.rooms) || 1;
 
     // Budget Calculation Logic (Estimated)
-    const adultCost = a * 3000; // ₹3000 per adult per night
-    const childCost = c * 1500; // ₹1500 per child per night
+    const adultCost = a * 5000; // ₹3000 per adult per night
+    const childCost = c * 2000; // ₹1500 per child per night
     const roomCost = r * 2000;  // ₹2000 per room per night
     
     const total = (adultCost + childCost + roomCost) * n;
